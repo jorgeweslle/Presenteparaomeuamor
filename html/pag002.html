@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NossoAmor</title>
+    <link
+      rel="shortcut icon"
+      href="../imagens/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../css/style-pag002.css" />
+
+    <script>
+      function calcularDiferenca(inicio) {
+        const agora = new Date();
+        let diff = Math.floor((agora - inicio) / 1000); // Diferença em segundos
+
+        const anos = Math.floor(diff / (60 * 60 * 24 * 365));
+        diff %= 60 * 60 * 24 * 365;
+
+        const meses = Math.floor(diff / (60 * 60 * 24 * 30));
+        diff %= 60 * 60 * 24 * 30;
+
+        const dias = Math.floor(diff / (60 * 60 * 24));
+        diff %= 60 * 60 * 24;
+
+        const horas = Math.floor(diff / (60 * 60));
+        diff %= 60 * 60;
+
+        const minutos = Math.floor(diff / 60);
+        const segundos = diff % 60;
+
+        return { anos, meses, dias, horas, minutos, segundos };
+      }
+
+      function atualizarContador(id, dataInicio) {
+        const { anos, meses, dias, horas, minutos, segundos } =
+          calcularDiferenca(dataInicio);
+        document.getElementById(
+          id
+        ).textContent = `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
+      }
+
+      function iniciarContadores() {
+        const dataInicio1 = new Date("May 15, 2024 00:00:00");
+        const dataInicio2 = new Date("March 13, 2024 00:00:00");
+
+        setInterval(() => atualizarContador("contador1", dataInicio1), 1000);
+        setInterval(() => atualizarContador("contador2", dataInicio2), 1000);
+      }
+
+      window.onload = iniciarContadores;
+
+      function criarCoracao() {
+        const coracao = document.createElement("div");
+        coracao.classList.add("heart");
+
+        // Define a posição inicial aleatória
+        coracao.style.left = Math.random() * 100 + "vw";
+
+        // Define uma velocidade de queda aleatória
+        coracao.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+        // Adiciona o coração ao body
+        document.body.appendChild(coracao);
+
+        // Remove o coração após a animação terminar
+        setTimeout(() => {
+          coracao.remove();
+        }, 5000);
+      }
+
+      // Cria um novo coração a cada 300ms
+      setInterval(criarCoracao, 200);
+    </script>
+  </head>
+  <body>
+    <div id="foto1">
+      <img
+        src="../imagens/namoro.jpg"
+        alt="foto casal namoro"
+        height="30%"
+        width="30%"
+        no-repeat
+      />
+    </div>
+    <p>Juntos como namorados:</p>
+    <div id="contador1">Carregando...</div>
+
+    <hr />
+
+    <div id="foto2">
+      <img
+        src="../imagens/ficada.jpg"
+        alt="foto casal primeira ficada"
+        height="30%"
+        width="30%"
+        no-repeat
+      />
+    </div>
+    <p>Juntos desde a primeira ficada:</p>
+    <div id="contador2">Carregando...</div>
+    <br />
+
+    <div id="dec">
+      <p id="text">
+        Meu amor, hoje venho te dizer o quanto eu te amo e te adoro. Fiz este
+        site com a intenção de mostrar o meu lado nerd, com a programação, e o
+        meu lado romântico. Estou aqui e sempre estarei ao teu lado, à tua
+        disposição. O teu sorriso traz mais luz que o sol, de tão brilhante, e
+        ilumina meus dias mais escuros, como um farol. O calor dos teus braços
+        faz meu corpo derreter por ti, e seus olhinhos puxados, a cada riso,
+        curam as minhas feridas mais profundas. Eu amo te amar. Eu te amo com
+        todo o meu coração e minha alma. Jamais esqueça que você será sempre a
+        minha princesa, minha garotinha e minha pessoinha favorita.
+      </p>
+    </div>
+  </body>
+</html>
